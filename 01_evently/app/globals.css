@@ -274,3 +274,7 @@ body {
 .react-datepicker__time-list-item--selected {
   background-color: #624cf5 !important;
 }
+
+div[data-state="open"].bg-black\/80 {
+  background: none !important;
+}
