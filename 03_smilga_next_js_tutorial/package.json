@@ -1,5 +1,5 @@
 {
-  "name": "02_food_ordering_app",
+  "name": "03_smilga_next_js_tutorial",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,19 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-    "bcrypt": "^5.1.1",
-    "express": "^4.19.1",
-    "immer": "^10.0.4",
-    "mongoose": "^8.2.2",
-    "next": "14.1.3",
-    "next-auth": "^4.24.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18",
-    "use-immer": "^0.9.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
+    "daisyui": "^4.7.3",
     "postcss": "^8",
     "tailwindcss": "^3.3.0"
   }
