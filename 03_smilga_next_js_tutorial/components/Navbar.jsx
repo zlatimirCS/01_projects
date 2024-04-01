@@ -12,12 +12,12 @@ const links = [
     label: "drinks",
   },
   {
-    href: "/tasks",
-    label: "tasks",
+    href: "/prisma-example",
+    label: "prisma",
   },
   {
-    href: "/query",
-    label: "query",
+    href: "/tasks",
+    label: "tasks",
   },
 ];
 
