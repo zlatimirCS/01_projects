@@ -2,6 +2,7 @@
 import prisma from "@/utils/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { z } from "zod";
 
 export const getAllTasks = async () => {
   return await prisma.task.findMany({
@@ -20,27 +21,42 @@ export const createTask = async (formData) => {
 };
 
 export const createTaskCustom = async (prevState, formData) => {
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const content = formData.get("content");
+  const Task = z.object({
+    content: z.string().min(5, "Task must be at least 5 characters"),
+  });
   try {
+    Task.parse({ content });
     await prisma.task.create({
       data: {
         content,
       },
     });
     revalidatePath("/tasks");
-    return { message: "Task created successfully" };
+
+    return { message: "success with creating task", status: "success" };
   } catch (error) {
-    return { message: "error..." };
+    console.log("error", error);
+    return { message: error.errors[0].message, status: "error" };
   }
 };
 
-export const deleteTask = async (formData) => {
+export const deleteTask = async (prevState, formData) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const id = formData.get("id");
-  await prisma.task.delete({
-    where: { id },
-  });
-  revalidatePath("/tasks");
+
+  try {
+    const test = await prisma.task.delete({
+      where: { id },
+    });
+    // revalidatePath("/tasks");
+    console.log("test", test);
+    // how to update state here and revalidate path
+    return { message: "Task deleted", status: "success" };
+  } catch (error) {
+    return { message: "error.errors[0].message", status: "error" };
+  }
 };
 
 export const getTask = async (id) => {
